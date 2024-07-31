@@ -1,6 +1,7 @@
 package br.edu.ifsul.cc.lpoo.danca.sistema.dao;
 
 
+import br.edu.ifsul.cc.lpoo.danca.sistema.model.Modalidade;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
@@ -54,5 +55,9 @@ public class PersistenciaJPA implements InterfacePersistencia{
         entity.getTransaction().commit(); //comita a transacao (comando sql)
     }
 
+    // Método adicional para obter todas as modalidades
+    public List<Modalidade> getModalidades() {
+        return entity.createQuery("from Modalidade", Modalidade.class).getResultList();
+    }
    
 }
