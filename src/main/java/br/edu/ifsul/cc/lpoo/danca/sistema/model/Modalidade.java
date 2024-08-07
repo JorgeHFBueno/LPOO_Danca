@@ -10,10 +10,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-/*
- * @author JRG
- */
+//@author JRG B
+
 
 @Entity
 @Table(name = "tb_modalidade")
@@ -27,6 +28,12 @@ public class Modalidade implements Serializable {
     
     @Column(nullable = false, length = 100)
     private String descricao;
+    
+    //    Validação do Mapeamento Bidirecional: Garantir que o mapeamento @OneToMany em Professor 
+    //    e @ManyToOne em Modalidade estejam corretamente configurados para refletir o relacionamento bidirecional.
+    @ManyToOne
+    @JoinColumn(name="modalidade_professor")
+    private Professor professor;
     
     public Modalidade(){
         
@@ -60,7 +67,16 @@ public class Modalidade implements Serializable {
         this.descricao = nome;
     }
 
-  
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
     
-    
+    @Override
+    public String toString() {
+        return descricao;
+    }
 }

@@ -1,4 +1,4 @@
-package br.edu.ifsul.cc.lpoo.danca.sistema.view;
+package br.edu.ifsul.cc.lpoo.danca.sistema.viewMKI;
 
 import br.edu.ifsul.cc.lpoo.danca.sistema.dao.PersistenciaJPA;
 import br.edu.ifsul.cc.lpoo.danca.sistema.model.Modalidade;
@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
  *
  * @author JRGB
  */
-public class TelaModalidades extends javax.swing.JFrame {
+public class TelaModalidadesB extends javax.swing.JFrame {
 
     private DefaultListModel<String> listModel;
     /**
      * Creates new form TelaModalidades
      */
-    public TelaModalidades() {
+    public TelaModalidadesB() {
         initComponents();
         listModel = new DefaultListModel<>();
         lstModalidades.setModel(listModel);
@@ -83,7 +83,7 @@ public class TelaModalidades extends javax.swing.JFrame {
         try {
             adicionarNovaModalidade();
         } catch (Exception ex) {
-            Logger.getLogger(TelaModalidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaModalidadesB.class.getName()).log(Level.SEVERE, null, ex);
         }
             
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -124,20 +124,21 @@ public class TelaModalidades extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesB.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaModalidades().setVisible(true);
+                new TelaModalidadesB().setVisible(true);
             }
         });
     }

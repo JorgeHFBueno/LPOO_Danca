@@ -1,6 +1,7 @@
 
 package br.edu.ifsul.cc.lpoo.danca.sistema.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Column;
@@ -11,16 +12,12 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- *
- * @author telmo
- */
-
-
-//@Entity
+// @author JRG B
+ 
+@Entity
 @Table(name = "tb_aluno")
-@DiscriminatorValue("A")
-public class Aluno extends Pessoa{
+//@DiscriminatorValue("A")
+public class Aluno extends Pessoa implements Serializable{
     
     
     @Column(nullable = false)

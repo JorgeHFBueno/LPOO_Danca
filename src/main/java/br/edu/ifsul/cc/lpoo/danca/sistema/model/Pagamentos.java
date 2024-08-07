@@ -15,9 +15,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-/*
- * @author JRG
- */
+// @author JRG B
+
 
 @Entity
 @Table(name = "tb_pagamento")
@@ -97,7 +96,13 @@ public class Pagamentos implements Serializable {
         this.valorPgto = valorPgto;
     }
 
-    
+    public Contrato getContrato() {
+        return contrato;
+    }
+
+    public void setContrato(Contrato contrato) {
+        this.contrato = contrato;
+    }
     
     
     

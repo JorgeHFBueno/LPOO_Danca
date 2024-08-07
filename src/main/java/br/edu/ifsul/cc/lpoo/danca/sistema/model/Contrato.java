@@ -2,16 +2,22 @@
 package br.edu.ifsul.cc.lpoo.danca.sistema.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -39,10 +45,19 @@ public class Contrato implements Serializable {
     
     
    @Column(nullable = false)
+   @Enumerated(EnumType.STRING)
     private FormaPgto forma_Pgto;
     
-   @OneToMany(mappedBy = "contrato")
-    private List<ItensContrato> itensContrato;
+    @OneToOne
+    @JoinColumn(name = "contrato_aluno")
+    private Aluno aluno;
+    
+    @ManyToMany
+    @JoinTable(
+            name = "tb_itens_contrato",
+            joinColumns = @JoinColumn(name = "contrato_id"),
+            inverseJoinColumns = @JoinColumn(name = "pacote_id"))
+    private List<Pacotes> pacotes = new ArrayList<>();
     
     public Contrato(){
         dataInicio = Calendar.getInstance();//Pega a data atual do sistema.MKII
@@ -85,15 +100,22 @@ public class Contrato implements Serializable {
         this.valorDesconto = valorDesconto;
     }
 
-    public List<ItensContrato> getItensContrato() {
-        return itensContrato;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setItensContrato(List<ItensContrato> itensContrato) {
-        this.itensContrato = itensContrato;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
+    public List<Pacotes> getPacotes() {
+        return pacotes;
+    }
 
+    public void addPacote(Pacotes p) {
+        pacotes.add(p);
+        p.addContrato(this);
+    }
 
     
     

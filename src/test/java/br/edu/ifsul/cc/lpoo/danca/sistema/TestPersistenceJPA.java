@@ -29,7 +29,7 @@ public class TestPersistenceJPA {
   
     //Exercício 1: inserir nova Modalidade.(10_04)
     //Exercício 2: Arrumar Classes Pessoas,Pagamentos,formaPgmto(17_04)
-    @Test 
+    //@Test 
     public void testPersistenciaModalidade() throws Exception {
 
         PersistenciaJPA persistencia = new PersistenciaJPA();

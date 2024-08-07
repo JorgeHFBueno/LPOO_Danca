@@ -1,6 +1,8 @@
 package br.edu.ifsul.cc.lpoo.danca.sistema.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,11 +13,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-/*
- * @author JRG
- */
+//@author JRG B
+
 
 @Entity
 @Table(name = "tb_pacotes")
@@ -36,6 +38,9 @@ public class Pacotes implements Serializable {
     @ManyToOne
     @JoinColumn (name = "id")
     private Modalidade modalidade;
+    
+    @ManyToMany(mappedBy = "pacotes")
+    private List<Contrato> contratos = new ArrayList<>();
     
     public Pacotes(){
         
@@ -83,7 +88,21 @@ public class Pacotes implements Serializable {
         this.valor = valor;
     }
 
-  
+    public Modalidade getModalidade() {
+        return modalidade;
+    }
+
+    public void setModalidade(Modalidade modalidade) {
+        this.modalidade = modalidade;
+    }
+
+    public List<Contrato> getContratos() {
+        return contratos;
+    }
+    
+    public void addContrato(Contrato c) {
+        contratos.add(c);
+    }
     
     
 }

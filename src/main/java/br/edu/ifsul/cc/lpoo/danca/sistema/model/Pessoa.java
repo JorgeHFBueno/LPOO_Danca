@@ -1,4 +1,3 @@
-
 package br.edu.ifsul.cc.lpoo.danca.sistema.model;
 
 import java.io.Serializable;
@@ -6,6 +5,8 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -14,18 +15,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-/**
- *
- * @author JRG
- */
+//@author JRG B
 
 @Entity
 @Table(name = "tb_pessoa")
-@Inheritance(strategy = InheritanceType.JOINED)//alterar a estratégia.
-@DiscriminatorColumn(name = "tipo")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(name = "tipo")
 public abstract class Pessoa implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id; 
     
     @Column(nullable = false, length = 100)
@@ -34,18 +33,18 @@ public abstract class Pessoa implements Serializable {
     @Column(nullable = true, length = 11)
     private String numero_celular;
     
+    @Column(nullable = false)
+    //@Temporal(TemporalType.TIMESTAMP)
+    private Calendar dataAniver;
+    
     @Column(nullable = false, length = 100)
     private String email;
-    
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar dataAniver;
     
     @Column(nullable = true, length = 100)
     private String endereco;
     
-    @Transient
-    private String tipo;    
+    //@Transient
+    //private String tipo;    
     
     
     public Pessoa(){
@@ -77,7 +76,7 @@ public abstract class Pessoa implements Serializable {
      * @param numero_celular the numero_celular to set
      */
     public void setNumero_celular(String numero_celular) {
-        this.numero_celular = numero_celular;
+        this.numero_celular = numero_celular.replaceAll(" ", "");
     }
 
     /**
@@ -109,19 +108,17 @@ public abstract class Pessoa implements Serializable {
         this.endereco = endereco;
     }
 
-    /**
-     * @return the tipo
-     */
+    /*
+    @return the tipo 
     public String getTipo() {
         return tipo;
     }
-
-    /**
-     * @param tipo the tipo to set
-     */
+    @param tipo the tipo to set
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+     */
+    
 
     public Integer getId() {
         return id;
@@ -139,4 +136,8 @@ public abstract class Pessoa implements Serializable {
         this.dataAniver = dataAniver;
     }
     
+    @Override
+    public String toString() {
+        return nome;
+    }
 }
